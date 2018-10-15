@@ -6,8 +6,10 @@ driver:
 lint:
   name: yamllint
 platforms:
-  - name: instance
-    image: centos:7
+  - name: ubuntu
+    image: ubuntu:18.04
+# - name: instance
+#   image: centos:7
 provisioner:
   name: ansible
   lint:
@@ -16,5 +18,7 @@ scenario:
   name: default
 verifier:
   name: testinfra
+  env:
+    PYTEST_ADDOPTS: --spec
   lint:
     name: flake8

@@ -1,10 +1,10 @@
 ---
 # tasks file for apt-cacher-ng
 - name: Install apt-cacher-ng
-  apt: name=apt-cacher-ng state=latest update_cache=yes cache_valid_time=3600
+  apt: name=apt-cacher-ng update_cache=yes cache_valid_time=3600
 
 - name: Create CacheDir
-  file: path={{ apt_cacher_ng_cache_dir }} owner=apt-cacher-ng group=apt-cacher-ng mode=2755 state=directory
+  file: path={{ apt_cacher_ng_cache_dir }} owner=apt-cacher-ng group=apt-cacher-ng mode=02755 state=directory
 
 - name: Set config
   lineinfile: dest=/etc/apt-cacher-ng/acng.conf regexp={{ item.regexp }} line="{{ item.line }}" state={{ item.state | default("present") }}
